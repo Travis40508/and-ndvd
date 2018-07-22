@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "974070961711",
+    "firebase_url": "https://ndvd-1464b.firebaseio.com",
+    "project_id": "ndvd-1464b",
+    "storage_bucket": "ndvd-1464b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974070961711:android:ce3452af0dc92154",
+        "android_client_info": {
+          "package_name": "com.rsp.ndvd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "974070961711-atjmv5dh94d3rq3beegv75ibephein04.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rsp.ndvd",
+            "certificate_hash": "f12f5aa788f21b6742a26c977f6168cc488da684"
+          }
+        },
+        {
+          "client_id": "974070961711-l5r8td7fia8hnobbb1o7rcn9g80k70c3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmAaIRO2Req2d1v92W6A-7pvccRjwhKfA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "974070961711-l5r8td7fia8hnobbb1o7rcn9g80k70c3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
