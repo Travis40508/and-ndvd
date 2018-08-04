@@ -1,31 +1,15 @@
 package com.rsp.ndvd.Model;
 
 public class Member {
-    private String name;
-    private String age;
+    private String email;
+    private String firstName;
+    private String lastName;
+    private String gender;
+    private String mobileNumber;
+    private String phoneNumber;
     private int photoId;
 
-    public Member(String name, String age, int photoId) {
-        this.setName(name);
-        this.setAge(age);
-        this.setPhotoId(photoId);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
-    }
+    public Member() {}
 
     public int getPhotoId() {
         return photoId;
@@ -33,5 +17,53 @@ public class Member {
 
     public void setPhotoId(int photoId) {
         this.photoId = photoId;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

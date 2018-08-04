@@ -17,31 +17,33 @@ import java.util.List;
 
 public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHolder> {
     private List<Member> members;
-    private Context context;
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
-        TextView memberName;
-        TextView memberAge;
+        TextView memberFirstName;
+        TextView memberLastName;
+        TextView memberMobile;
         TextView memberPhone;
+        TextView memberEmail;
         ImageView memberPhoto;
 
         ViewHolder(View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.card_view);
-            memberName = (TextView)itemView.findViewById(R.id.member_name);
-            memberAge = (TextView)itemView.findViewById(R.id.member_age);
+            memberFirstName = (TextView)itemView.findViewById(R.id.member_firstName);
+            memberLastName = (TextView)itemView.findViewById(R.id.member_lastName);
             memberPhoto = (ImageView)itemView.findViewById(R.id.member_photo);
             memberPhone = (TextView) itemView.findViewById(R.id.member_phone);
+            memberMobile = (TextView) itemView.findViewById(R.id.member_mobile);
+            memberEmail = (TextView) itemView.findViewById(R.id.member_email);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public MembersAdapter(Context context, List<Member> members) {
         this.members = members;
-        this.context = context;
     }
 
     // Create new views (invoked by the layout manager)
@@ -57,10 +59,13 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.memberName.setText(members.get(position).getName());
-        holder.memberAge.setText(members.get(position).getAge());
-        holder.memberPhoto.setImageResource(members.get(position).getPhotoId());
-        holder.memberPhone.setText("9876543210");
+        Member member = members.get(position);
+        holder.memberFirstName.setText(member.getFirstName());
+        holder.memberLastName.setText(member.getLastName());
+        holder.memberPhoto.setImageResource(member.getPhotoId());
+        holder.memberPhone.setText(member.getPhoneNumber());
+        holder.memberMobile.setText(member.getMobileNumber());
+        holder.memberEmail.setText(member.getEmail());
     }
 
     // Return the size of your dataset (invoked by the layout manager)

@@ -4,15 +4,23 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.rsp.ndvd.Model.Member;
 import com.rsp.ndvd.ViewUtils.DividerItemDecoration;
 import com.rsp.ndvd.ViewUtils.VerticalSpaceItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends Activity {
+    private static final String TAG = "NDVD.MainActivity";
     private static final int VERTICAL_ITEM_SPACE = 10;
 
     private RecyclerView recyclerView;
@@ -37,33 +45,43 @@ public class MainActivity extends Activity {
         recyclerView.setLayoutManager(mLayoutManager);
 
         initializeData();
-        // specify an adapter (see also next example)
-        mAdapter = new MembersAdapter(this, members);
-        recyclerView.setAdapter(mAdapter);
     }
 
+    private void initializeData() {
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReferenceFromUrl("https://ndvd-1464b.firebaseio.com");
+        // Read from the database
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                Object value = dataSnapshot.getValue();
+                Log.d(TAG, "Value is: " + value.toString());
+                if (members == null) {
+                    members = new ArrayList<>();
+                }
+                for (DataSnapshot parent : dataSnapshot.getChildren()) {
+                    for (DataSnapshot child : parent.getChildren()) {
+                        Member member = child.getValue(Member.class);
+                        if (member != null) {
+                            members.add(member);
+                        }
+                    }
+                    if (members != null) {
+                        // specify an adapter (see also next example)
+                        mAdapter = new MembersAdapter(MainActivity.this, members);
+                        recyclerView.setAdapter(mAdapter);
+                    }
+                }
+            }
 
-
-    // This method creates an ArrayList that has three Member objects
-// Checkout the project associated with this tutorial on Github if
-// you want to use the same images.
-    private void initializeData(){
-        members = new ArrayList<>();
-        members.add(new Member("Emma Wilson", "23 years old", R.mipmap.member_default));
-        members.add(new Member("Lavery Maiss", "25 years old", R.mipmap.member_default));
-        members.add(new Member("Lillie Watts", "35 years old", R.mipmap.member_default));
-        members.add(new Member("Emma Wilson", "23 years old", R.mipmap.member_default));
-        members.add(new Member("Lavery Maiss", "25 years old", R.mipmap.member_default));
-        members.add(new Member("Lillie Watts", "35 years old", R.mipmap.member_default));
-        members.add(new Member("Emma Wilson", "23 years old", R.mipmap.member_default));
-        members.add(new Member("Lavery Maiss", "25 years old", R.mipmap.member_default));
-        members.add(new Member("Lillie Watts", "35 years old", R.mipmap.member_default));
-        members.add(new Member("Emma Wilson", "23 years old", R.mipmap.member_default));
-        members.add(new Member("Lavery Maiss", "25 years old", R.mipmap.member_default));
-        members.add(new Member("Lillie Watts", "35 years old", R.mipmap.member_default));
-        members.add(new Member("Emma Wilson", "23 years old", R.mipmap.member_default));
-        members.add(new Member("Lavery Maiss", "25 years old", R.mipmap.member_default));
-        members.add(new Member("Lillie Watts", "35 years old", R.mipmap.member_default));
-
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
     }
 }
