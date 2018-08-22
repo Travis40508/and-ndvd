@@ -1,4 +1,4 @@
-package com.rsp.ndvd.ViewUtils;
+package com.rsp.ndvd.viewUtils;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;

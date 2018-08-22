@@ -1,4 +1,4 @@
-package com.rsp.ndvd;
+package com.rsp.ndvd.viewModel;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -9,14 +9,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.rsp.ndvd.Model.Member;
-
-import org.w3c.dom.Text;
+import com.rsp.ndvd.R;
+import com.rsp.ndvd.model.Member;
+import com.rsp.ndvd.viewUtils.Utils;
 
 import java.util.List;
 
 public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHolder> {
+    private Context context;
     private List<Member> members;
+    private int[] cardColors;
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
@@ -42,8 +44,10 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MembersAdapter(Context context, List<Member> members) {
+    public MembersAdapter(List<Member> members, Context context) {
         this.members = members;
+        this.context = context;
+        this.cardColors = Utils.getCardColors(context);
     }
 
     // Create new views (invoked by the layout manager)
@@ -62,10 +66,11 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
         Member member = members.get(position);
         holder.memberFirstName.setText(member.getFirstName());
         holder.memberLastName.setText(member.getLastName());
-        holder.memberPhoto.setImageResource(member.getPhotoId());
-        holder.memberPhone.setText(member.getPhoneNumber());
-        holder.memberMobile.setText(member.getMobileNumber());
+        holder.memberPhoto.setImageResource((member.getPhotoId()<=0)? R.mipmap.member_default : member.getPhotoId());
+        holder.memberPhone.setText(String.format("%s", member.getPhoneNumber()));
+        holder.memberMobile.setText(String.format("%s", member.getMobileNumber()));
         holder.memberEmail.setText(member.getEmail());
+        holder.cv.setBackgroundColor(cardColors[position % cardColors.length]);
     }
 
     // Return the size of your dataset (invoked by the layout manager)

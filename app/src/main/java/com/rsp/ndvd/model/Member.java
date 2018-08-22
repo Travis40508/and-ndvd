@@ -1,10 +1,13 @@
-package com.rsp.ndvd.Model;
+package com.rsp.ndvd.model;
 
-public class Member {
+import android.support.annotation.Keep;
+
+import java.io.Serializable;
+@Keep
+public class Member implements Serializable {
     private String email;
     private String firstName;
     private String lastName;
-    private String gender;
     private String mobileNumber;
     private String phoneNumber;
     private int photoId;
@@ -41,14 +44,6 @@ public class Member {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public String getMobileNumber() {

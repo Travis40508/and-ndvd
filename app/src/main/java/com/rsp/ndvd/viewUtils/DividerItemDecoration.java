@@ -1,4 +1,4 @@
-package com.rsp.ndvd.ViewUtils;
+package com.rsp.ndvd.viewUtils;
 
 import android.content.Context;
 import android.content.res.TypedArray;

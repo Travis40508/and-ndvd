@@ -3,4 +3,24 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="textColorLight">#ffffff</color>
+
+    <array name="card_colors">
+        <item>#803cba54</item>
+        <item>#80f4c20d</item>
+        <item>#80db3236</item>
+        <item>#804885ed</item>
+        <!--<item>#50b0bec5</item>-->
+        <!--<item>#e2f1f8</item>-->
+        <!--<item>#808e95</item>-->
+        <!--<item>#fff9c4</item>-->
+        <!--<item>#fffff7</item>-->
+        <!--<item>#cbc693</item>-->
+        <!--<item>#c5e1a5</item>-->
+        <!--<item>#fff59d</item>-->
+        <!--<item>#ffe0b2</item>-->
+        <!--<item>#ffccbc</item>-->
+        <!--<item>#b3e5fc</item>-->
+        <!--<item>#b0bec5</item>-->
+    </array>
 </resources>

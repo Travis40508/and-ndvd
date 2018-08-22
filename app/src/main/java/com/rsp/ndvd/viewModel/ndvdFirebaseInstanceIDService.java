@@ -1,4 +1,4 @@
-package com.rsp.ndvd;
+package com.rsp.ndvd.viewModel;
 
 import android.util.Log;
 
