@@ -7,15 +7,11 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.rsp.ndvd.R;
 import com.rsp.ndvd.viewUtils.Constants;
@@ -86,8 +82,8 @@ public class ImportFragment extends Fragment implements ImportView {
 
     @Override
     public void launchCamera(int requestImageCapture) {
-        Intent cameraintent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(cameraintent, requestImageCapture);
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, requestImageCapture);
     }
 
     @Override

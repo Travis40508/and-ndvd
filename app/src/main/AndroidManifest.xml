@@ -18,6 +18,7 @@
 
         <activity
             android:name="com.rsp.ndvd.view.LandingActivity"
+            android:windowSoftInputMode="adjustPan"
             android:label="@string/title_activity_landing"
             android:theme="@style/AppTheme.NoActionBar">
 
