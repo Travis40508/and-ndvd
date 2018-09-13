@@ -56,7 +56,7 @@ public class ImportPresenter implements BasePresenter<ImportView> {
 
     public void saveClicked(String firstName, String lastName, String email, String mobilePhone, String homePhone) {
         if(!(firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || mobilePhone.isEmpty() || homePhone.isEmpty() || imageBitmap == null)) {
-            //Save object to Firebase
+            //Save object to Firebase - Model will need to be Base64 String or Byte[] so we can decode into a bitmap image and display.
         } else {
             view.toastError("Please fill out all fields and take a picture before saving.");
         }
