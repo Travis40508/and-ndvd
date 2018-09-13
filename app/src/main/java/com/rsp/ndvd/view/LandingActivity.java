@@ -18,9 +18,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.rsp.ndvd.view.importview.ImportFragment;
 import com.rsp.ndvd.viewModel.MembersAdapter;
 import com.rsp.ndvd.R;
 import com.rsp.ndvd.model.Member;
+import com.rsp.ndvd.viewUtils.Constants;
 import com.rsp.ndvd.viewUtils.VerticalSpaceItemDecoration;
 
 import java.util.ArrayList;
@@ -154,7 +156,8 @@ public class LandingActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            ImportFragment importFragment = ImportFragment.newInstance();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder, importFragment, Constants.IMPORT_FRAGMENT_TAG).addToBackStack(null).commit();
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
