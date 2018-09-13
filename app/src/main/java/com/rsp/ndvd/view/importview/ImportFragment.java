@@ -1,6 +1,9 @@
 package com.rsp.ndvd.view.importview;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -10,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +41,9 @@ public class ImportFragment extends Fragment implements ImportView {
     @BindView(R.id.input_home_phone)
     protected TextInputEditText homePhoneInput;
 
+    @BindView(R.id.image_taken)
+    protected ImageView imageTaken;
+
     private ImportPresenter presenter;
     private ImportFragment importFragment;
 
@@ -47,7 +54,7 @@ public class ImportFragment extends Fragment implements ImportView {
 
     @OnClick(R.id.button_take_picture)
     protected void onTakePictureClicked(View view) {
-        
+        presenter.takePictureClicked();
     }
 
     @Nullable
@@ -75,5 +82,22 @@ public class ImportFragment extends Fragment implements ImportView {
     public void reAttachFragment() {
         importFragment = (ImportFragment) getActivity().getSupportFragmentManager().findFragmentByTag(Constants.IMPORT_FRAGMENT_TAG);
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder, importFragment, Constants.IMPORT_FRAGMENT_TAG).commit();
+    }
+
+    @Override
+    public void launchCamera(int requestImageCapture) {
+        Intent cameraintent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraintent, requestImageCapture);
+    }
+
+    @Override
+    public void displayImagePreview(Bitmap imageBitmap) {
+        imageTaken.setImageBitmap(imageBitmap);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        presenter.retrieveImage(requestCode, resultCode, data);
     }
 }
