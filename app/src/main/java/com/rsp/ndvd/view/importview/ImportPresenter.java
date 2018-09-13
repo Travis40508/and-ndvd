@@ -53,4 +53,12 @@ public class ImportPresenter implements BasePresenter<ImportView> {
             view.displayImagePreview(imageBitmap);
         }
     }
+
+    public void saveClicked(String firstName, String lastName, String email, String mobilePhone, String homePhone) {
+        if(!(firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || mobilePhone.isEmpty() || homePhone.isEmpty() || imageBitmap == null)) {
+            //Save object to Firebase
+        } else {
+            view.toastError("Please fill out all fields and take a picture before saving.");
+        }
+    }
 }

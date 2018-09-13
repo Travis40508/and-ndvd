@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.rsp.ndvd.R;
 import com.rsp.ndvd.viewUtils.Constants;
@@ -45,7 +46,11 @@ public class ImportFragment extends Fragment implements ImportView {
 
     @OnClick(R.id.button_save_form)
     protected void onSaveClicked(View view) {
-
+        presenter.saveClicked(firstNameInput.getText().toString(),
+                lastNameInput.getText().toString(),
+                emailInput.getText().toString(),
+                mobilePhoneInput.getText().toString(),
+                homePhoneInput.getText().toString());
     }
 
     @OnClick(R.id.button_take_picture)
@@ -89,6 +94,11 @@ public class ImportFragment extends Fragment implements ImportView {
     @Override
     public void displayImagePreview(Bitmap imageBitmap) {
         imageTaken.setImageBitmap(imageBitmap);
+    }
+
+    @Override
+    public void toastError(String errorMessage) {
+        Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -10,4 +10,6 @@ public interface ImportView extends BaseView {
     void launchCamera(int requestImageCapture);
 
     void displayImagePreview(Bitmap imageBitmap);
+
+    void toastError(String s);
 }
