@@ -1,8 +1,11 @@
 package com.rsp.ndvd.viewModel;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +69,7 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
         Member member = members.get(position);
         holder.memberFirstName.setText(member.getFirstName());
         holder.memberLastName.setText(member.getLastName());
-        holder.memberPhoto.setImageResource((member.getPhotoId()<=0)? R.mipmap.member_default : member.getPhotoId());
+        holder.memberPhoto.setImageBitmap(decodeStringToBitmap(member.getImage()));
         holder.memberPhone.setText(String.format("%s", member.getPhoneNumber()));
         holder.memberMobile.setText(String.format("%s", member.getMobileNumber()));
         holder.memberEmail.setText(member.getEmail());
@@ -82,5 +85,16 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
+    }
+
+    private Bitmap decodeStringToBitmap(String image) {
+        try {
+            byte [] encodeByte= Base64.decode(image,Base64.DEFAULT);
+            Bitmap bitmap=BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        } catch(Exception e) {
+            e.getMessage();
+            return null;
+        }
     }
 }

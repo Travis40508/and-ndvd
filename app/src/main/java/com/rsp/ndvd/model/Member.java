@@ -10,16 +10,25 @@ public class Member implements Serializable {
     private String lastName;
     private String mobileNumber;
     private String phoneNumber;
-    private int photoId;
+    private String image;
 
     public Member() {}
 
-    public int getPhotoId() {
-        return photoId;
+    public Member(String firstName, String lastName, String email, String mobileNumber, String phoneNumber, String image) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.mobileNumber = mobileNumber;
+        this.phoneNumber = phoneNumber;
+        this.image = image;
     }
 
-    public void setPhotoId(int photoId) {
-        this.photoId = photoId;
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getEmail() {

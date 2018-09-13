@@ -12,4 +12,6 @@ public interface ImportView extends BaseView {
     void displayImagePreview(Bitmap imageBitmap);
 
     void toastError(String s);
+
+    void removeFragment();
 }

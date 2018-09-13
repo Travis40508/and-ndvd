@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.rsp.ndvd.R;
 import com.rsp.ndvd.viewUtils.Constants;
 
+import java.io.UnsupportedEncodingException;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -45,7 +47,7 @@ public class ImportFragment extends Fragment implements ImportView {
     private ImportFragment importFragment;
 
     @OnClick(R.id.button_save_form)
-    protected void onSaveClicked(View view) {
+    protected void onSaveClicked(View view)  {
         presenter.saveClicked(firstNameInput.getText().toString(),
                 lastNameInput.getText().toString(),
                 emailInput.getText().toString(),
@@ -99,6 +101,12 @@ public class ImportFragment extends Fragment implements ImportView {
     @Override
     public void toastError(String errorMessage) {
         Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void removeFragment() {
+        Fragment fragment = (ImportFragment) getActivity().getSupportFragmentManager().findFragmentByTag(Constants.IMPORT_FRAGMENT_TAG);
+        getActivity().getSupportFragmentManager().beginTransaction().remove(fragment).commit();
     }
 
     @Override
