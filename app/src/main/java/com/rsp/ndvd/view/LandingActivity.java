@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.rsp.ndvd.view.galleryview.GalleryFragment;
 import com.rsp.ndvd.view.importview.ImportFragment;
 import com.rsp.ndvd.viewModel.MembersAdapter;
 import com.rsp.ndvd.R;
@@ -159,7 +160,8 @@ public class LandingActivity extends AppCompatActivity
             ImportFragment importFragment = ImportFragment.newInstance();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder, importFragment, Constants.IMPORT_FRAGMENT_TAG).addToBackStack(null).commit();
         } else if (id == R.id.nav_gallery) {
-
+            GalleryFragment galleryFragment = GalleryFragment.newInstance();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder, galleryFragment, Constants.GALLERY_FRAGMENT_TAG).addToBackStack(null).commit();
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {

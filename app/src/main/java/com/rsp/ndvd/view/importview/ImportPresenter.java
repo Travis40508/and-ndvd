@@ -67,8 +67,8 @@ public class ImportPresenter implements BasePresenter<ImportView> {
     }
 
     public void saveClicked(String firstName, String lastName, String email, String mobilePhone, String homePhone) {
-        if(true) {
-            Member member = new Member("travis", "tressler", "r.travis.tressler@gmail.com", "606-548-2251", "606-349-3539", convertBitmapToString(imageBitmap));
+        if(!(firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || mobilePhone.isEmpty() || homePhone.isEmpty() || imageBitmap == null)) {
+            Member member = new Member(firstName, lastName, email, mobilePhone, homePhone, convertBitmapToString(imageBitmap));
             mDatabase.child("Member").push().setValue(member);
             view.removeFragment();
         } else {
